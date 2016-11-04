@@ -13,13 +13,13 @@ import {
   Alert,
 } from 'react-native';
 
-import TNNavigator from './components/TNNavigator';
-import HomePage from './components/HomePage';
+import EasyNavigator from '../index';
+import HomePage from './HomePage';
 
 class AwesomeProject extends Component {
   render() {
     return (
-      <TNNavigator
+      <EasyNavigator
         initialRoute={{ //Route定义为这个Navigator的路由，包括每次跳转需要的参数，NavigationBar配置
           component: HomePage, //render的Component
           title: 'Home Senen', //导航栏标题
