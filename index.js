@@ -15,18 +15,42 @@ import NavigationBar from 'react-native-navbar';
 
 export default class EasyNavigator extends Component {
   static propTypes = {
-    configureScene: PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.func
-    ]),
-    title: Image.propTypes.source
-
+    initialRoute: PropTypes.shape({
+      component: PropTypes.element.isRequired,
+      title: PropTypes.string,
+      style: PropTypes.object,
+      tintColor: PropTypes.string,
+      titleColor: PropTypes.string,
+      titleImage: Image.propTypes.source,
+      titleView: PropTypes.element,
+      onTitlePress: PropTypes.func,
+      leftButtonTitle: PropTypes.string,
+      leftButtonIcon: Image.PropTypes.source,
+      leftButtonView: PropTypes.element,
+      onLeftButtonPress: PropTypes.func,
+      rightButtonTitle: PropTypes.string,
+      rightButtonIcon: Image.PropTypes.source,
+      rightButtonView: PropTypes.element,
+      onRightButtonPress: PropTypes.func,
+      buttonColor: PropTypes.string,
+    }),
+    statusBar: PropTypes.shape({
+      style: PropTypes.string,
+      hidden: PropTypes.bool,
+      tintColor: PropTypes.string,
+      hideAnimation: PropTypes.string,
+      showAnimation: PropTypes.string,
+    }),
+    nativeIOS: PropTypes.bool,
+    nativeIOSBarHeight: PropTypes.number,
+    animateIOS: PropTypes.string,
+    animateAndroid: PropTypes.string,
   }
 
   static defaultProps = {
     ...Component,
     nativeIOS: false,
-    nativeIOSBarHeight: 64, // iOS Navbar 44 and statusbar 20
+    nativeIOSBarHeight: 64, // iOS Navbar 44 and statusbar 20, no need to modify
   }
 
   constructor(props) {
@@ -96,7 +120,7 @@ export default class EasyNavigator extends Component {
     let animate = Platform.OS === 'ios' ? this.props.animateIOS : this.props.animateAndroid;
     if (animate) {
       if (typeof(animate) === 'function') {
-        return animate(route, routeStack);
+        return animate.bind(this, route, routeStack);
       } else if (typeof(animate) === 'string') {
         return Navigator.SceneConfigs[animate] ? Navigator.SceneConfigs[animate]
           : null; // default

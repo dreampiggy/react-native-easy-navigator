@@ -1,10 +1,14 @@
 {
-  "name": "@tuniu/react-native-navigator",
+  "name": "react-native-navigator",
   "version": "0.1.0",
   "description": "react native navigator with navbar and statusbar. support iOS and Android",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dreampiggy/react-native-easy-navigator.git"
   },
   "keywords": [
     "react-native",
@@ -13,7 +17,7 @@
   "author": "lizhuoli",
   "license": "ISC",
   "dependencies": {
-    "react-native": "0.29.0",
+    "react-native": "^0.29.0",
     "react-native-navbar": "^1.5.4"
   }
 }
